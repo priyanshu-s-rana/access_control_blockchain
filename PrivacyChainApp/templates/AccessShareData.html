@@ -1,0 +1,65 @@
+{% load static %}
+<html>
+
+<head>
+  <title>Auth Privacy Chain - {{ page_title|default:"Shared Data" }}</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link href="{% static 'style_copy.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="main_wrapper"> <div class="main_resize">
+      <div class="header">
+        <div class="logo">
+          <h1 class="site-title"> <span>A Blockchain-Based Access Control Framework With Privacy Protection in Cloud</span>
+            <small>Empowering Secure Data Exchange</small>
+          </h1>
+        </div>
+      </div>
+      <div class="content"> <div class="content_bg"> <div class="menu_nav">
+            <ul>
+              <li><a href="{% url 'AccessShareData' %}">Access Share Data</a></li>
+              <li><a href="{% url 'IndirectAccess' %}">Indirect Access Control</a></li>
+              <li><a href="{% url 'Graph' %}">Smart Contract Computation Graph</a></li>
+              <li><a href="{% url 'Logout' %}">Logout</a></li>
+            </ul>
+          </div>
+
+          <h2 class="page_title">{{ page_title|default:"Access Shared Data" }}</h2>
+
+          {% if shared_files %}
+            <div class="table-responsive">
+              <table class="data-table"> <thead>
+                  <tr>
+                    <th>Data Owner Name</th>
+                    <th>Filename</th>
+                    <th>Blockchain Hash Value</th>
+                    <th>Access Permission Users</th>
+                    <th>Upload Date Time</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for file in shared_files %}
+                  <tr>
+                    <td>{{ file.owner_name }}</td>
+                    <td>{{ file.filename }}</td>
+                    <td>{{ file.hash_value }}</td>
+                    <td>{{ file.access_users }}</td>
+                    <td>{{ file.upload_datetime }}</td>
+                    <td>
+                      <a href="{% url 'Download' %}?t1={{ file.filename }}&t2={{ file.hash_value }}"
+                        class="download-btn">Download</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          {% else %}
+            <div class="no-data-message"> <p>NO DATA AVAILABLE.</p>
+            </div>
+          {% endif %}
+
+        </div> </div> </div> </div> </body>
+</html>

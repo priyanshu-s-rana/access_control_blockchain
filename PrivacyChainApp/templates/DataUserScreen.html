@@ -1,0 +1,64 @@
+{% load static %}
+<html>
+<head>
+<title>Auth Privacy Chain</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="{% static 'style_copy.css' %}" rel="stylesheet" type="text/css" />
+<style>
+  /* Optional: Add some styling for the graph container */
+  .graph-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center; /* Center the image */
+  }
+  .graph-container img {
+    max-width: 100%; /* Make image responsive */
+    height: auto;
+    border: 1px solid #ddd; /* Optional border */
+    border-radius: 4px; /* Optional rounded corners */
+  }
+  .error-message {
+    color: red;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<div class="main">
+  <div class="main_resize">
+    <div class="header">
+      <div class="logo">
+        <h1 class="site-title">
+                        <span>A Blockchain-Based Access Control Framework With Privacy Protection in Cloud</span>
+                        <small>Empowering Secure Data Exchange</small> </h1>
+      </div>
+    </div>
+    <div class="content">
+      <div class="content_bg">
+        <div class="menu_nav">
+          <ul>
+            <li><a href="{% url 'AccessShareData' %}">Access Share Data</a></li>
+            <li><a href="{% url 'IndirectAccess' %}">Indirect Access Control</a></li>
+            <li><a href="{% url 'Graph' %}">Smart Contract Computation Graph</a></li>
+            <li><a href="{% url 'Logout' %}">Logout</a></li>
+          </ul>
+        </div>
+
+        {% if graph_title %}
+          <h2 class="welcome_message"><center>{{ graph_title }}</center></h2>
+        {% elif data %}
+          <h2 class="welcome_message"><center>{{ data|safe }}</center></h2>
+        {% endif %}
+
+        <div class="graph-container">
+          {% if graph_image_b64 %}
+            <img src="data:image/png;base64,{{ graph_image_b64 }}" alt="Computation Graph">
+          {% elif graph_error %}
+            <p class="error-message">{{ graph_error }}</p>
+          {% else %}
+            <p>Graph will be displayed here if data is available.</p>
+          {% endif %}
+        </div>
+
+      </div> </div> </div> </div> </body>
+</html>

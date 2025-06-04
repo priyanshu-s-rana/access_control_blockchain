@@ -1,0 +1,987 @@
+@charset "utf-8";
+/* GitHub Dark Theme Color Variables - Enhanced with Modern UI Elements */
+:root {
+  /* Base Colors */
+  --primary: #2ea043; /* GitHub's green for primary actions */
+  --primary-rgb: 46, 160, 67; /* RGB for rgba() usage */
+  --secondary: #1a7f37; /* Darker green for selected/active states */
+  --accent: #58a6ff; /* GitHub's blue for links and accents */
+  --accent-rgb: 88, 166, 255; /* RGB for rgba() usage */
+  
+  /* Background & Surface Colors */
+  --background: #0d1117; /* GitHub's main dark background */
+  --surface: #161b22; /* Slightly lighter than background for cards/sections */
+  --surface-hover: #1f2937; /* Hover state for surface elements */
+  
+  /* Text Colors */
+  --text-dark: #e6edf3; /* Primary text color for dark theme */
+  --text-light: #8b949e; /* Secondary text color */
+  --text-muted: #6e7781; /* Muted text for less important content */
+  
+  /* UI Colors */
+  --border: #30363d; /* Border color for dark theme */
+  --border-hover: #484f58; /* Border color on hover */
+  --hover-bg: #1f2937; /* Background color for hover states */
+  --header-bg: #161b22; /* Header background */
+  --danger: #f85149; /* Danger/error color */
+  --danger-rgb: 248, 81, 73; /* RGB for rgba() usage */
+  --success: #2ea043; /* Success color */
+  --success-rgb: 46, 160, 67; /* RGB for rgba() usage */
+  
+  /* Component specific dark theme variables */
+  --color-canvas-default: var(--background);
+  --color-canvas-subtle: var(--surface);
+  --color-border-default: var(--border);
+  --color-border-muted: var(--border);
+  --color-fg-default: var(--text-dark);
+  --color-fg-muted: var(--text-light);
+  --color-fg-subtle: var(--text-muted);
+  --color-fg-on-emphasis: #ffffff;
+  --color-btn-primary-bg: var(--primary);
+  --color-btn-primary-hover-bg: #2c974b;
+  --color-btn-primary-selected-bg: var(--secondary);
+  --color-btn-border: rgba(201, 209, 217, 0.1);
+  --color-header-text: var(--color-fg-default);
+  --color-accent-fg: var(--accent);
+  --color-accent-emphasis: var(--accent);
+  --color-danger-fg: var(--danger);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+  
+  /* Border Radius */
+  --border-radius-sm: 6px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  
+  /* Transitions */
+  --transition-speed: 0.2s;
+  --transition-timing: ease-in-out;
+}
+
+/* Base Styles */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  color: var(--color-fg-default);
+  background: var(--color-canvas-default);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0.015em;
+  transition: background-color var(--transition-speed) var(--transition-timing);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Main Wrapper */
+.main_wrapper {
+  flex-grow: 1;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  position: relative;
+  z-index: 2;
+  background-color: transparent;
+}
+
+/* Main Content Container */
+.main_resize {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1.5rem;
+}
+
+html {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+.main {
+  padding: 0;
+  margin: 0;
+  background: var(--color-canvas-subtle); /* Use subtle canvas for main area if different from body */
+}
+
+.logo {
+  height: 96px;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0.75em;
+  color: var(--color-fg-default);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: 2rem; /* 32px */
+  padding: 1.5rem 0 0.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+
+h1 a, h1 a:hover {
+  color: var(--color-fg-default);
+  text-decoration: none;
+  transition: color var(--transition-speed) var(--transition-timing);
+}
+
+h1 a:hover {
+  color: var(--accent);
+}
+
+h1 span {
+  color: var(--color-fg-default);
+  font-weight: 600;
+}
+
+h1 small {
+  padding: 0 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--color-fg-muted);
+  letter-spacing: normal;
+}
+
+h2 {
+  font-size: 1.5rem; /* 24px */
+  margin: 1.5rem 0 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border-default);
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.25rem; /* 20px */
+  margin: 1.25rem 0 0.75rem;
+}
+
+p {
+  margin: 0 0 1rem;
+  color: var(--color-fg-default);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Links */
+a {
+  color: var(--color-accent-fg);
+  text-decoration: none;
+  transition: color var(--transition-speed) var(--transition-timing);
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+a.rm, a.com {
+  text-decoration: none;
+}
+
+a {
+  color: var(--color-accent-fg);
+  text-decoration: none; /* GitHub often uses no underline by default */
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a.rm, a.com {
+  padding: 0;
+  text-decoration: none;
+}
+
+.header, .content, .menu_nav, .fbg, .footer, form, ol, ol li, ul, .content .mainbar, .content .sidebar {
+  margin: 0;
+  padding: 0;
+}
+
+.main_resize {
+  margin: 0 auto;
+  width: 1069px; /* Consider making this responsive if possible */
+}
+
+.header {
+  background: var(--color-header-bg); /* Header background */
+}
+
+.header_resize {
+  margin: 0 auto;
+  width: 969px;
+}
+
+.hbg {
+  padding: 4px;
+  margin: 0 0 10px;
+  background: var(--color-canvas-subtle);
+  border: 1px solid var(--color-border-default);
+  width:auto ;
+  border-radius: 6px; /* GitHub uses 6px */
+}
+
+/* Buttons */
+.submit_button, button, input[type="submit"], input[type="button"], .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-btn-primary-bg);
+  color: var(--color-fg-on-emphasis);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-btn-border);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  cursor: pointer;
+  transition: all var(--transition-speed) var(--transition-timing);
+  white-space: nowrap;
+  appearance: none;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.submit_button:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover, .btn:hover {
+  background-color: var(--color-btn-primary-hover-bg);
+  border-color: var(--border-hover);
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.submit_button:active, button:active, input[type="submit"]:active, input[type="button"]:active, .btn:active {
+  background-color: var(--color-btn-primary-selected-bg);
+  border-color: var(--border);
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.submit_button:focus, button:focus, input[type="submit"]:focus, input[type="button"]:focus, .btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-input-focus-shadow);
+}
+
+/* Secondary Button Style */
+.btn-secondary {
+  background-color: var(--surface);
+  color: var(--color-fg-default);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--hover-bg);
+  border-color: var(--border-hover);
+}
+
+/* Danger Button Style */
+.btn-danger {
+  background-color: var(--danger);
+  color: white;
+  border: 1px solid var(--danger);
+}
+
+.btn-danger:hover {
+  background-color: #e03e3e;
+  border-color: #e03e3e;
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+}
+
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+/* Full Width Button */
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+#img1{
+  width: 100%;
+  border-radius: 6px; /* Consistent border radius */
+  box-shadow: var(--color-shadow-medium); /* Use variable for shadow */
+  border: 1px solid var(--color-border-default); /* Add border for images on dark bg */
+}
+
+.menu_nav {
+  margin: 0 0 16px;
+  padding: 0 16px; /* Adjust padding for a sleeker look */
+  border-bottom: 1px solid var(--color-border-default);
+  background: var(--color-header-bg); /* Match header or use subtle canvas */
+  box-shadow: none; /* GitHub headers usually don't have prominent shadows */
+}
+
+.menu_nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Use flexbox for alignment */
+  align-items: center;
+  height: 56px; /* Typical GitHub header height */
+}
+
+.menu_nav ul li {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.menu_nav ul li a {
+  display: flex;
+  align-items: center;
+  margin: 0 8px; /* Spacing between nav items */
+  padding: 8px 16px;
+  color: #ffffff; /* Brighter white for nav links */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  border-radius: 6px;
+}
+
+.menu_nav ul li.active a, .menu_nav ul li a:hover {
+  color: var(--color-header-text); /* Keep text color consistent on hover */
+  text-decoration: none;
+  background: rgba(177,186,196,0.12); /* Subtle hover background for nav items */
+}
+
+.content {
+  padding: 16px; /* Consistent padding */
+  background: var(--color-canvas-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  box-shadow: var(--color-shadow-small);
+  transition: transform 0.3s ease;
+}
+
+.content:hover {
+  transform: translateY(-2px); /* Subtle hover effect */
+}
+
+.content_bg {
+  padding: 16px; /* Consistent padding */
+  background: var(--color-canvas-default);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.mainbar {
+  margin: 0;
+  padding: 0;
+  float: right; /* Keep layout if necessary, consider flex/grid for modern layouts */
+  width: 653px;
+}
+
+.mainbar img {
+  padding: 4px;
+  border: 1px solid var(--color-border-muted); /* Muted border for images */
+  background: var(--color-canvas-subtle); /* Subtle background for image container */
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+.mainbar img.fl {
+  margin: 4px 16px 4px 0;
+  float: left;
+}
+
+.mainbar img:hover {
+  transform: scale(1.03); /* Slightly less aggressive hover scale */
+}
+
+.mainbar .article {
+  margin: 0;
+  padding: 10px 15px 5px;
+}
+
+.mainbar .article a {
+  color: var(--color-accent-fg);
+  transition: color 0.3s ease;
+}
+
+.mainbar .article a:hover {
+  color: var(--color-accent-emphasis);
+  text-decoration: underline;
+}
+
+.mainbar .post-data a {
+  color: var(--color-fg-muted);
+}
+
+.mainbar .spec a {
+  padding: 7px 15px;
+  background: var(--color-btn-primary-bg);
+  color: var(--color-fg-on-emphasis);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.mainbar .spec a:hover {
+  background: var(--color-btn-primary-hover-bg);
+  transform: translateY(-2px);
+}
+
+.sidebar {
+  padding: 0;
+  float: left;
+  width: 270px;
+}
+
+.sidebar .gadget {
+  margin: 0 0 16px 0; /* Add bottom margin */
+  padding: 16px;
+  background-color: var(--color-canvas-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+}
+
+ul.sb_menu, ul.ex_menu {
+  margin: 0;
+  padding: 0;
+  color: var(--color-fg-muted);
+  list-style: none;
+}
+
+ul.sb_menu li, ul.ex_menu li {
+  margin: 0;
+}
+
+ul.sb_menu li {
+  padding: 4px 0; /* Adjust padding */
+}
+
+ul.ex_menu li {
+  padding: 4px 0;
+}
+
+ul.sb_menu li a, ul.ex_menu li a {
+  display: block;
+  color: var(--color-fg-default);
+  text-decoration: none;
+  padding: 8px 12px; /* Adjust padding */
+  margin-left: -12px; /* Counteract padding for alignment */
+  padding-left: 12px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+ul.sb_menu li a:hover, ul.ex_menu li a:hover, 
+ul.sb_menu li.active a, ul.ex_menu li.active a {
+  color: var(--color-accent-fg); /* Use accent color for active/hover links */
+  background-color: var(--hover-bg); /* Subtle background on hover */
+  text-decoration: none;
+}
+
+.content .mainbar .comment {
+  margin: 0;
+  padding: 16px 0 0 0;
+  border-top: 1px solid var(--color-border-default); /* Add border for separation */
+}
+
+.content .mainbar .comment img.userpic {
+  border: 1px solid var(--color-border-muted);
+  margin: 10px 16px 0 0;
+  padding: 0;
+  float: left;
+  border-radius: 50%; /* Circular user pics */
+}
+
+.fbg { /* Footer Background Group - consider if this is still needed or can be simplified */
+  padding: 16px 0;
+  background-color: var(--color-canvas-subtle);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.fbg_resize {
+  margin: 0 auto;
+  padding: 0 32px;
+  width: 885px;
+}
+
+.fbg img {
+  padding: 4px;
+  border: 1px solid var(--color-border-muted);
+  background-color: var(--color-canvas-default);
+  border-radius: 6px;
+}
+
+.fbg p, .fbg h2 {
+  color: var(--color-fg-default);
+}
+
+.fbg a {
+  color: var(--color-accent-fg);
+}
+
+.fbg .col {
+  margin: 0;
+  float: left;
+  /* background: url(images/fbg_line.gif) repeat-y right; Remove old image background */
+}
+
+.fbg .c1 {
+  padding: 0 15px 0 0;
+  width: 270px;
+}
+
+.fbg .c2 {
+  padding: 0 15px;
+  width: 295px;
+}
+
+.fbg .c3 {
+  padding: 0 0 0 15px;
+  width: 260px;
+  background: none;
+}
+
+.fbg .c1 img {
+  margin: 8px 16px 8px 0;
+}
+
+.fbg .c3 img {
+  margin: 8px 16px 4px 0;
+  float: left;
+}
+
+.footer {
+  background: var(--color-header-bg); /* Consistent with header */
+  border-top: 1px solid var(--color-border-default);
+}
+
+.footer_resize {
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 885px;
+  color: var(--color-fg-muted); /* Muted text for footer */
+}
+
+.footer p {
+  margin: 0;
+  padding: 4px 0;
+  line-height: normal;
+  color: var(--color-fg-muted);
+}
+
+.footer a {
+  color: var(--color-accent-fg);
+  padding: inherit;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer .lf {
+  float: left;
+}
+
+.footer .rf {
+  float: right;
+}
+
+ol {
+  list-style: none;
+}
+
+ol li {
+  display: block;
+  clear: both;
+}
+
+ol li label {
+  display: block;
+  margin: 0;
+  padding: 16px 0 8px 0; /* Adjust padding */
+  color: var(--color-fg-default);
+  font-weight: 500;
+}
+
+ol li input.text {
+  width: 100%; /* Make inputs responsive */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  border: 1px solid var(--color-input-border);
+  margin: 2px 0 16px 0; /* Add bottom margin */
+  padding: 8px 12px;
+  height: auto;
+  background: var(--color-input-bg);
+  color: var(--color-fg-default);
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+ol li input.text:focus {
+  border-color: var(--color-input-focus-border);
+  box-shadow: 0 0 0 3px var(--color-input-focus-shadow);
+  outline: none;
+}
+
+ol li textarea {
+  width: 100%; /* Make textareas responsive */
+  box-sizing: border-box;
+  border: 1px solid var(--color-input-border);
+  margin: 2px 0 16px 0;
+  padding: 8px 12px;
+  background: var(--color-input-bg);
+  color: var(--color-fg-default);
+  border-radius: 6px;
+  min-height: 80px; /* Set a min-height */
+  transition: all 0.2s ease-in-out;
+}
+
+ol li textarea:focus {
+  border-color: var(--color-input-focus-border);
+  box-shadow: 0 0 0 3px var(--color-input-focus-shadow);
+  outline: none;
+}
+
+
+ol li .send {
+  margin: 16px 0 0 0;
+}
+
+.search span { /* This search style might need a more significant overhaul for GitHub look */
+  width: auto; /* Adjust width */
+  display: flex; /* Use flex for better alignment */
+  background: var(--color-input-bg);
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--color-input-border);
+  border-radius: 6px;
+}
+
+.search input#s {
+  flex-grow: 1; /* Allow input to take available space */
+  padding: 7px 12px;
+  margin: 0;
+  border: 0;
+  background: none;
+  color: var(--color-fg-default);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.search input#s:focus {
+  outline: none;
+}
+
+.search .btn {
+  background: var(--color-btn-primary-bg);
+  color: var(--color-fg-on-emphasis);
+  padding: 7px 16px; /* Match input padding */
+  border: none; /* Remove border if input has one */
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  margin-left: -1px; /* Overlap border */
+}
+
+.search .btn:hover {
+  background: var(--color-btn-primary-hover-bg);
+}
+
+.pagenavi {
+  clear: both;
+  font: normal 12px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  margin: 0 auto;
+  text-align: right;
+  padding: 20px 15px;
+}
+
+.pagenavi a, .pagenavi .current {
+  margin-left: 4px; /* Adjust spacing */
+  padding: 6px 12px;
+  text-decoration: none;
+  color: var(--color-accent-fg); /* Use accent for links */
+  background: var(--color-canvas-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.pagenavi a:hover, .pagenavi .current {
+  background: var(--color-accent-emphasis);
+  color: var(--color-fg-on-emphasis);
+  border-color: var(--color-accent-emphasis);
+}
+
+.pagenavi .pages {
+  float: left;
+  color: var(--color-fg-muted);
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clr {
+  clear: both;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-size: 0;
+  line-height: 0;
+}
+
+/* Add Loading Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); } /* Subtle animation */
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.form_section {
+  /* Container Styling */
+  background-color: var(--color-canvas-subtle); /* Use subtle canvas for forms */
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  box-shadow: var(--color-shadow-small); /* Subtle shadow */
+  padding: 24px;
+  width: 70%; /* Consider making this responsive */
+  margin: 32px auto; /* More margin */
+}
+
+/* Form Elements */
+.form_section h2 {
+  color: var(--color-fg-default);
+  font-size: 20px; /* Slightly smaller h2 for forms */
+  font-weight: 600;
+  margin-bottom: 24px; /* More margin */
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+.form_section table {
+  width: 100%;
+  border-spacing: 0;
+  margin-bottom: 16px;
+}
+
+.form_section td {
+  padding: 8px 0; /* Adjust padding */
+  vertical-align: top; /* Align labels top */
+}
+
+.form_section td:first-child {
+  color: #e6edf3; /* Brighter color for form labels */
+  font-weight: 500;
+  width: 25%;
+  padding-right: 16px; /* Space between label and input */
+}
+
+/* Input Fields */
+.form_section input[type="text"],
+.form_section input[type="password"],
+.form_section select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px; /* Consistent padding */
+  border: 1px solid var(--color-input-border);
+  border-radius: 6px;
+  font-size: 15px; /* Slightly larger for inputs */
+  background-color: var(--color-input-bg);
+  color: #ffffff; /* Pure white for input text */
+  line-height: 20px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form_section input[type="text"]:focus,
+.form_section input[type="password"]:focus,
+.form_section select:focus {
+  border-color: var(--color-input-focus-border);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-input-focus-shadow);
+}
+
+.welcome_message {
+  /* Typography */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 28px; /* Adjusted size */
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.3;
+  
+  /* Colors & Effects */
+  color: var(--color-fg-default);
+  
+  /* Spacing */
+  margin: 40px 0; /* More margin */
+  padding: 16px;
+  
+  /* Container Style */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+/* Add specific styling when welcome_message is inside h2 */
+h2.welcome_message {
+  position: relative;
+  margin-bottom: 2.5rem; /* 40px */
+  font-size: 28px; /* Match above */
+}
+
+h2.welcome_message::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px; /* Thinner line */
+  background: var(--color-accent-emphasis); /* Use accent color */
+  border-radius: 2px;
+}
+
+
+.custom-file-input {
+  display: inline-block;
+  padding: 5px 16px; /* Match button padding */
+  background: var(--color-btn-primary-bg);
+  color: var(--color-fg-on-emphasis);
+  border: 1px solid var(--color-btn-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  transition: background-color 0.2s;
+}
+
+.custom-file-input:hover {
+  background: var(--color-btn-primary-hover-bg);
+}
+
+#file-chosen {
+  margin-left: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--color-fg-muted);
+  font-size: 14px;
+  line-height: 20px; /* Ensure consistent line height */
+}
+
+/* Styles for AccessShareData.html specific classes */
+.content_data {
+  padding: 20px;
+  background-color: var(--color-canvas-subtle);
+  border-radius: 6px;
+  border: 1px solid var(--color-border-default);
+}
+
+.page_title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--color-fg-default);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: separate; /* Use separate for border-radius on cells */
+  border-spacing: 0;
+  margin: 20px 0;
+  background: var(--color-canvas-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  box-shadow: var(--color-shadow-medium);
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.data-table th {
+  background: var(--color-canvas-subtle);
+  font-weight: 600; /* Bolder headers */
+  color: #ffffff; /* Pure white for table headers */
+  border-bottom-width: 2px; /* Thicker bottom border for headers */
+}
+
+.data-table tr:last-child td {
+  border-bottom: none; /* Remove bottom border for the last row */
+}
+
+.data-table tr:hover {
+  background-color: var(--hover-bg);
+}
+
+.data-table td {
+  color: #e6edf3; /* Brighter color for table data */
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 5px 12px; /* Slightly smaller padding */
+  background: var(--color-btn-primary-bg);
+  color: var(--color-fg-on-emphasis);
+  text-decoration: none;
+  border-radius: 6px;
+  border: 1px solid var(--color-btn-border);
+  transition: background-color 0.2s;
+  font-size: 13px; /* Slightly smaller font */
+  font-weight: 500;
+}
+
+.download-btn:hover {
+  background: var(--color-btn-primary-hover-bg);
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: var(--color-fg-muted);
+  background-color: var(--color-canvas-subtle);
+  border: 1px dashed var(--color-border-muted); /* Dashed border for emphasis */
+  border-radius: 6px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}

@@ -1,0 +1,1015 @@
+@charset "utf-8";
+
+/* Modern Color Variables & UI Elements */
+:root {
+  --primary: #2563eb; /* A vibrant blue */
+  --primary-rgb: 37, 99, 235; /* RGB for rgba() usage */
+  --secondary: #1e40af; /* A darker, more subdued blue */
+  --secondary-rgb: 30, 64, 175;
+  --accent: #3b82f6; /* A slightly lighter blue for accents and highlights */
+  --accent-rgb: 59, 130, 246; /* RGB for rgba() usage */
+
+  --background: #f8fafc; /* Very light gray for body background */
+  --surface: #ffffff; /* White for cards, modals, form backgrounds */
+
+  --text-dark: #1e293b; /* Dark slate gray for primary text */
+  --text-light: #64748b; /* Lighter slate gray for secondary text */
+
+  --border: #e2e8f0; /* Light gray for borders */
+  --success: #10b981; /* Green for success messages */
+  --danger: #ef4444; /* Red for error messages */
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  --border-radius-sm: 0.25rem; /* 4px */
+  --border-radius-md: 0.5rem; /* 8px */
+  --border-radius-lg: 0.75rem; /* 12px */
+
+  --success: #10b981;
+  --success-rgb: 16, 185, 129;
+  --danger: #ef4444;
+  --danger-rgb: 239, 68, 68;
+}
+
+/* Global Resets and Base Styles */
+html {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  font-size: 100%; /* Base for rem units (typically 16px) */
+  height: 100%; 
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  color: var(--text-dark);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Important if using ::before/::after for the background */
+  overflow-x: hidden;
+
+  /* Base background color - this will be visible through transparent parts of the pattern */
+  background-color: var(--primary);
+}
+
+.main_wrapper {
+  flex-grow: 1;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  position: relative;
+  z-index: 2; /* Above the body's ::before pseudo-element */
+  background-color: transparent; /* So body background shows through */
+}
+
+
+/* Main Content Wrapper to ensure footer stays at bottom */
+.main_wrapper {
+  flex-grow: 1;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  position: relative; /* Ensure .main_wrapper content is above the body's pseudo-element */
+  z-index: 2;       /* Higher z-index than body::before */
+  background-color: transparent; /* Make main_wrapper background transparent so body animation shows through if needed, or set its own distinct background if it shouldn't be transparent */
+}
+
+.main_resize {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1100px; /* Standard content width */
+  padding: 0 1rem; /* Horizontal padding for smaller screens */
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  margin: 0 auto 1rem;
+}
+
+.logo img {
+  max-height: 100%;
+  width: auto;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.75em;
+  color: var(--text-dark);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+
+h1 { font-size: 2.25rem; /* ~36px */ }
+h1 a { color: var(--primary); text-decoration: none; }
+h1 a:hover { color: var(--secondary); }
+h1 span { color: var(--text-dark); } /* For title text */
+h1 small { padding: 0 0.5rem; font-size: 0.875rem; font-weight: 400; color: var(--text-light); letter-spacing: normal; }
+
+h2 { font-size: 1.75rem; /* ~28px */ margin-bottom: 1rem; }
+
+p { margin-bottom: 1rem; font-size: 1rem; line-height: 1.7; color: var(--text-light); }
+
+a { color: var(--accent); text-decoration: none; transition: color 0.2s ease-in-out; }
+a:hover { color: var(--secondary); text-decoration: underline; }
+a.rm, a.com { text-decoration: none; }
+
+
+/* Header & Navigation */
+.header_resize {
+  max-width: 1100px;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 1.5rem; /* Added bottom margin */
+}
+
+.menu_nav {
+  width: 100%;
+  background-color: var(--surface);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0;
+  overflow: hidden;
+}
+
+.menu_nav ul {
+  list-style: none;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem; /* Spacing between nav items */
+}
+
+.menu_nav ul li a {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 0.9375rem; /* ~15px */
+  font-weight: 500;
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.2s ease;
+}
+
+.menu_nav ul li a:hover,
+.menu_nav ul li a:focus {
+  color: var(--primary);
+  background-color: rgba(var(--primary-rgb), 0.1); /* Light primary background on hover */
+  transform: translateY(-1px);
+}
+
+.menu_nav ul li.active a {
+  color: var(--surface);
+  background-color: var(--primary);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Content Area */
+.content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.5s ease-out forwards;
+
+  position: relative;
+  overflow: hidden; /* Keeps 3D elements contained */
+  z-index: 1;
+  perspective: 800px; /* Creates the 3D space for child/pseudo elements. Adjust value as needed. */
+  /* perspective-origin: center center; /* Default, but you can change it */
+}
+
+.content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.content_layout { /* Wrapper for mainbar and sidebar */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.mainbar {
+  flex: 3; /* Takes more space */
+  min-width: 300px;
+}
+
+.mainbar img {
+  padding: 0.25rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--border-radius-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  max-width: 100%;
+  height: auto;
+}
+.mainbar img.fl { margin: 0.25rem 1rem 0.25rem 0; float: left; }
+.mainbar img:hover { transform: scale(1.03); box-shadow: var(--shadow-md); }
+
+.mainbar .article { margin-bottom: 1.5rem; }
+.mainbar .article a { color: var(--accent); }
+.mainbar .article a:hover { color: var(--secondary); }
+
+.mainbar .post-data { font-size: 0.875rem; color: var(--text-light); margin-bottom: 0.5rem; }
+.mainbar .post-data a { color: var(--text-light); font-weight: 500; }
+.mainbar .post-data a:hover { color: var(--primary); }
+
+.mainbar .spec a { /* "Read More" style button */
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--primary);
+  color: var(--surface);
+  border-radius: var(--border-radius-md);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+}
+.mainbar .spec a:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+.sidebar {
+  flex: 1; /* Takes less space */
+  min-width: 250px;
+}
+
+.sidebar .gadget {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--background);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border);
+}
+.sidebar .gadget h2 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+
+ul.sb_menu, ul.ex_menu { list-style: none; }
+ul.sb_menu li a, ul.ex_menu li a {
+  display: block;
+  color: var(--text-dark);
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  margin: 0.25rem 0;
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+ul.sb_menu li a:hover, ul.ex_menu li a:hover,
+ul.sb_menu li.active a, ul.ex_menu li.active a {
+  color: var(--surface);
+  background-color: var(--primary);
+}
+
+/* Comments */
+.content .mainbar .comment { margin-bottom: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+.content .mainbar .comment:first-child { border-top: none; padding-top: 0; }
+.content .mainbar .comment img.userpic {
+  border: 1px solid var(--border);
+  margin: 0 1rem 0.5rem 0;
+  padding: 2px;
+  float: left;
+  border-radius: 50%; /* Circular user pics */
+  width: 48px;
+  height: 48px;
+}
+
+/* Footer Sections */
+.fbg { /* Footer Background Group */
+  padding: 2rem 0;
+  background-color: var(--text-dark);
+  color: var(--background);
+}
+.fbg_resize {
+  max-width: 1100px;
+  padding: 0 1rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.fbg img { padding: 0.25rem; border: 1px solid var(--text-light); background-color: var(--surface); border-radius: var(--border-radius-sm); }
+.fbg p, .fbg h2 { color: var(--background); }
+.fbg h2 { font-size: 1.375rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--text-light); padding-bottom: 0.5rem; }
+.fbg a { color: var(--accent); }
+.fbg a:hover { color: var(--primary); }
+.fbg .col { flex: 1; min-width: 250px; padding: 0 1rem; }
+.fbg .col:first-child { padding-left: 0; }
+.fbg .col:last-child { padding-right: 0; }
+.fbg .c1 img { margin: 0.5rem 1rem 0.5rem 0; }
+.fbg .c3 img { margin: 0.5rem 1rem 0.25rem 0; float: left; }
+
+.footer {
+  padding: 1.5rem 0;
+  background: var(--secondary);
+  color: var(--background);
+  text-align: center;
+}
+.footer_resize { max-width: 1100px; padding: 0 1rem; margin: 0 auto; }
+.footer p { margin: 0.25rem 0; font-size: 0.875rem; color: var(--border); }
+.footer a { text-decoration: underline; color: var(--accent); }
+.footer a:hover { text-decoration: none; color: var(--surface); }
+
+/* Generic Form Elements (used in ol-based forms and .form_section) */
+form ol { list-style: none; }
+form ol li { display: flex; flex-direction: column; margin-bottom: 1.25rem; }
+form ol li label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9375rem; }
+
+form ol li input.text,
+form ol li textarea,
+.form_section input[type="text"],
+.form_section input[type="email"],
+.form_section input[type="password"],
+.form_section select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  background-color: var(--background); /* Slightly off-white for input fields */
+  color: var(--text-dark);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+form ol li input.text:focus,
+form ol li textarea:focus,
+.form_section input[type="text"]:focus,
+.form_section input[type="email"]:focus,
+.form_section input[type="password"]:focus,
+.form_section select:focus {
+  border-color: var(--primary);
+  background-color: var(--surface); /* White background on focus */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+}
+
+form ol li textarea { min-height: 120px; resize: vertical; }
+form ol li .send { margin-top: 1.5rem; } /* Submit button container */
+
+.page_title {
+  text-align: center;
+  margin-top: 0; /* If it's the first element in .content_bg */
+  margin-bottom: 1.5rem; /* 24px */
+  color: var(--text-dark);
+  font-size: 1.75em; /* Matches h2 */
+  font-weight: 600;
+  padding-bottom: 0.75rem; /* 12px */
+  border-bottom: 1px solid var(--border);
+}
+
+.table-responsive {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-lg); /* Use larger radius consistent with .content */
+  background-color: var(--surface); /* Ensure it has a background if table doesn't fill it */
+  box-shadow: var(--shadow-sm); /* Subtle shadow */
+}
+
+.data-table { /* Using this class for the table, was access-data-table */
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem; /* ~15px, good for tables */
+  /* table-layout: fixed; */
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dark);
+}
+
+.data-table thead th {
+  background-color: var(--background);
+  font-weight: 600;
+  color: var(--text-dark);
+  border-bottom: 2px solid var(--primary);
+  /* White-space and overflow for headers too, in case of long header text */
+  white-space: nowrap;
+}
+
+/* --- Define Column Widths --- */
+/* These are examples; adjust percentages based on your typical data and preference */
+data-table th:nth-child(1),
+.data-table td:nth-child(1) {
+  max-width: 100px; /* Give it a decent minimum width */
+  /* Or use a percentage like width: 20%; but min-width is often better for this column */
+  white-space: normal; /* Allow wrapping */
+}
+
+.data-table th:nth-child(2),
+.data-table td:nth-child(2) {
+  max-width: 250px; /* Set a max-width for truncation to kick in */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Blockchain Hash Value - Apply truncation */
+.data-table th:nth-child(3),
+.data-table td:nth-child(3) {
+  max-width: 250px; /* Set a max-width for truncation */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* word-break: break-all; /* Alternative if you want to show more of the hash */
+}
+
+/* Access Permission Users - Allow wrapping */
+.data-table th:nth-child(4),
+.data-table td:nth-child(4) {
+  min-width: 120px; /* Or width: 15%; */
+  white-space: normal;
+}
+
+/* Upload Date Time - Usually fine */
+.data-table th:nth-child(5),
+.data-table td:nth-child(5) {
+  min-width: 120px; /* Or width: 15%; */
+  white-space: nowrap;
+}
+
+/* Actions - Ensure it doesn't wrap the button awkwardly */
+.data-table th:nth-child(6),
+.data-table td:nth-child(6) {
+  min-width: 100px; /* Ensure enough space for the button */
+  /* width: 10%; */
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Remove bottom border for the last row in the table body */
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Hover effect for table rows */
+.data-table tbody tr:hover {
+  background-color: rgba(var(--primary-rgb), 0.05); /* Very subtle primary tint on hover */
+}
+
+/* Download Button in Table */
+.data-table .download-btn {
+  display: inline-block;
+  padding: 0.4rem 0.8rem; /* 6.4px 12.8px */
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--surface); /* White text */
+  background: var(--primary); /* Use theme primary color */
+  border: 1px solid var(--primary);
+  border-radius: var(--border-radius-md);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.data-table .download-btn:hover {
+  background: var(--secondary); /* Darker shade on hover */
+  border-color: var(--secondary);
+  color: var(--surface);
+  text-decoration: none;
+}
+
+/* "NO DATA" Message */
+.no-data-message {
+  text-align: center;
+  padding: 2rem 1rem; /* More padding */
+  color: var(--text-light); /* Use lighter text color */
+  background-color: var(--background); /* Match subtle background */
+  border: 1px dashed var(--border);
+  border-radius: var(--border-radius-md);
+  margin: 1.5rem 0;
+}
+.no-data-message p {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+/* General Submit Button */
+.submit_button, form button[type="submit"], form input[type="submit"], .search .btn {
+  display: inline-block;
+  background: linear-gradient(45deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.8rem 1.75rem;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  text-align: center;
+}
+.submit_button:hover, form button[type="submit"]:hover, form input[type="submit"]:hover, .search .btn:hover {
+  background: linear-gradient(45deg, var(--secondary), var(--primary));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.submit_button:active, form button[type="submit"]:active, form input[type="submit"]:active, .search .btn:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
+.submit_button:focus, form button[type="submit"]:focus, form input[type="submit"]:focus, .search .btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.3); /* Focus ring */
+}
+
+/* Search Input */
+.search {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-md);
+  padding: 0.25rem;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.search input#s {
+  flex-grow: 1;
+  padding: 0.6rem 0.8rem;
+  border: none;
+  background: transparent;
+  color: var(--text-dark);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  outline: none;
+}
+.search input#s::placeholder { color: var(--text-light); opacity: 0.7; }
+
+/* Pagination */
+.pagenavi {
+  clear: both;
+  font-size: 0.9375rem;
+  margin: 2rem auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.pagenavi a, .pagenavi .current, .pagenavi .pages {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  color: var(--text-dark);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-md);
+  transition: all 0.2s ease;
+  font-weight: 500;
+  line-height: 1;
+}
+.pagenavi a:hover {
+  background: rgba(var(--primary-rgb), 0.1);
+  color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+.pagenavi .current { background: var(--primary); color: var(--surface); border-color: var(--primary); font-weight: 600; cursor: default; }
+.pagenavi .pages { background: transparent; border: none; color: var(--text-light); padding: 0.6rem 0.5rem; }
+
+/* Utility & Clearfix */
+.fl { float: left; }
+.fr { float: right; }
+.clr::after, .clearfix::after { content: ""; display: table; clear: both; }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes expandWidth { to { width: 70px; } }
+
+/* Modern Form Section (Login/Signup, etc.) */
+.form_section {
+  background-color: var(--surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 2.5rem; /* Keep padding for internal spacing */
+  width: 100%;
+  /* --- INCREASED MAX-WIDTH --- */
+  max-width: 600px; /* Increased from 480px - adjust as needed */
+  margin: 3rem auto;
+  animation: fadeInUp 0.6s ease-out forwards;
+
+  position: relative;
+  overflow: hidden; /* Keeps 3D elements contained */
+  z-index: 1;
+  perspective: 800px; /* Creates the 3D space for child/pseudo elements. Adjust value as needed. */
+  /* perspective-origin: center center; /* Default, but you can change it */
+}
+.content > *,
+.form_section > * {
+  position: relative;
+  z-index: 2; /* Higher z-index than the pseudo-elements */
+}
+
+.form_section h2 {
+  color: var(--text-dark);
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.form_section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+/* If using .form-group structure (label on top of input) */
+.form-group {
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.5s ease-out forwards;
+  animation-delay: calc(var(--animation-order, 0) * 100ms);
+  opacity: 0; /* Start hidden for animation */
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+  font-size: 0.9375rem;
+}
+
+/* Ensured inputs take full width of their container */
+.form_section input[type="text"],
+.form_section input[type="email"],
+.form_section input[type="password"],
+.form_section select,
+.form_section textarea /* Added textarea here */ {
+  width: 100%; /* This should make them span the .form-group or table cell */
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  background-color: var(--background);
+  color: var(--text-dark);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.form_section textarea {
+    min-height: 100px; /* Example height for textareas */
+    resize: vertical;
+}
+
+
+.form_section input[type="text"]:focus,
+.form_section input[type="email"]:focus,
+.form_section input[type="password"]:focus,
+.form_section select:focus,
+.form_section textarea:focus {
+  border-color: var(--primary);
+  background-color: var(--surface);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+}
+
+.form_section select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2364748B'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25em 1.25em;
+  padding-right: 2.5rem;
+  max-width: 700px;
+}
+
+.form_section .submit_button,
+.form_section button[type="submit"] {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  font-size: 1.05rem;
+  margin-top: 1rem; /* Adjusted margin-top for better spacing */
+}
+
+
+/* --- Styles for forms with labels to the side (potentially using table or custom divs) --- */
+/* This is a more general approach if you're not using .form-group for these side-by-side layouts */
+.form-row { /* Create a new class for rows where label and input are side-by-side */
+    display: flex;
+    align-items: center; /* Vertically align label and input if they have different heights */
+    margin-bottom: 1.25rem; /* Spacing between rows */
+    gap: 1rem; /* Space between label and input */
+    animation: fadeIn 0.5s ease-out forwards;
+    animation-delay: calc(var(--animation-order, 0) * 100ms);
+    opacity: 0;
+}
+
+.form-row label {
+    flex-basis: 120px; /* Fixed or percentage width for labels, adjust as needed */
+    flex-shrink: 0; /* Prevent label from shrinking */
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 0.9375rem;
+    text-align: right; /* Align label text to the right for neatness */
+    padding-right: 0.5rem; /* Add a little space between label text and input */
+}
+
+.form-row .input-wrapper { /* Wrapper for the input/select/textarea if needed */
+    flex-grow: 1; /* Allows the input field to take remaining space */
+}
+
+/* Ensure inputs within .form-row also take full width of their wrapper */
+.form-row .input-wrapper input[type="text"],
+.form-row .input-wrapper input[type="email"],
+.form-row .input-wrapper input[type="password"],
+.form-row .input-wrapper select,
+.form-row .input-wrapper textarea {
+    width: 100%;
+}
+
+/* Special handling for custom file input if it's in a .form-row */
+.form-row .custom-file-input-container {
+    flex-grow: 1; /* Allow it to take space */
+    display: flex; /* Keep its internal flex behavior */
+    align-items: center;
+}
+.form-row .custom-file-input-container .custom-file-input {
+    flex-shrink: 0; /* Prevent the button part from shrinking too much */
+}
+#file-chosen {
+    /* Styles for file-chosen remain mostly the same but ensure it can grow */
+    flex-grow: 1;
+    min-width: 0; /* Important for flex items that need to shrink and show ellipsis */
+}
+
+
+/* If you are DEFINITELY using <table> within .form_section for some forms: */
+.form_section table {
+  width: 100%;
+  border-spacing: 0; /* Remove default table spacing */
+}
+
+.form_section td {
+  padding-top: 0.5rem; /* Add some vertical spacing between table rows */
+  padding-bottom: 0.5rem;
+}
+
+.form_section td:first-child { /* Assuming this is the label cell */
+  color: var(--text-dark); /* Updated from --text-light */
+  font-weight: 500;
+  padding-right: 1rem; /* Space between label and input cell */
+  width: auto; /* Allow label to take its content width, or set a fixed one */
+  white-space: nowrap; /* Prevent labels from wrapping if they are short */
+  text-align: right; /* Align labels to the right */
+  vertical-align: middle; /* Align label text vertically with input */
+}
+/* Example fixed width for label column if needed */
+/* .form_section td:first-child {
+    width: 150px;
+} */
+
+
+.form_section td:last-child { /* Assuming this is the input cell */
+  width: 100%; /* Make input cell take remaining width */
+}
+
+/* Welcome Message */
+.status-message {
+  text-align: center;
+  margin: 1.5rem auto; /* Top/bottom margin, centered */
+  padding: 0.75rem 1.25rem; /* 12px 20px */
+  border-radius: var(--border-radius-md);
+  font-size: 0.9375rem; /* ~15px, much smaller than welcome_message */
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 600px; /* Consistent with form width */
+  color: var(--text-dark);
+  background-color: rgba(var(--primary-rgb), 0.08); /* Subtle primary tint */
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.status-message.success {
+  background-color: rgba(var(--success-rgb), 0.1);
+  border-color: rgba(var(--success-rgb), 0.3);
+  color: var(--success); /* Use the actual success color for text */
+}
+
+.status-message.error {
+  background-color: rgba(var(--danger-rgb), 0.1);
+  border-color: rgba(var(--danger-rgb), 0.3);
+  color: var(--danger); /* Use the actual danger color for text */
+}
+
+/* Custom File Input */
+.custom-file-input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative; /* For positioning the actual input */
+}
+.custom-file-input { /* This is the styled <label> */
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--accent);
+  color: white;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+.custom-file-input:hover { background: var(--primary); transform: translateY(-1px); }
+
+/* Actual file input, visually hidden but accessible */
+.custom-file-input-container input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%; /* Make it cover the styled button and text area if needed */
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10; /* Ensure it's on top for clicks */
+}
+#file-chosen {
+  margin-left: 0.75rem;
+  font-family: inherit;
+  color: var(--text-light);
+  font-size: 0.9375rem;
+  flex-grow: 1;
+  padding: 0.6rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Specific Image ID */
+/* #img1 {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1.5rem;
+  display: block;
+} */
+
+/* ... other CSS rules ... */
+
+/* Multi-select styling */
+.multi-select {
+  min-height: 120px;
+  width: 100%;
+  border: 2px solid var(--primary);
+  padding: 8px;
+  border-radius: 4px;
+  background-color: var(--surface);
+}
+
+.multi-select option {
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.multi-select option:checked {
+  background-color: var(--primary);
+  color: white;
+}
+
+.multi-select option:hover:not(:checked) {
+  background-color: rgba(var(--primary-rgb), 0.1);
+}
+
+.form-help-text {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.site-title {
+  font-size: 1.75rem; /* Adjust size as needed, e.g., 2rem, 2.25rem */
+  font-weight: 700; /* Bold */
+  color: var(--surface); /* Or var(--primary) if you want it blue */
+  line-height: 1.4; /* Increased line height to prevent cutting off */
+  text-align: center;
+  margin: 1rem 0 1.5rem 0; /* Top and bottom margin */
+  padding: 0.5rem; /* Some padding if needed */
+  letter-spacing: -0.025em;
+}
+
+.site-title span {
+  /* Styles for the main part of the title if needed,
+     but usually the parent .site-title handles it.
+     The <span> was in your original HTML. */
+  display: block; /* Ensures it behaves as a block if text wraps */
+  color: var(--background)
+}
+
+.site-title small {
+  display: block; /* Make small text appear on a new line or below */
+  font-size: 0.875rem; /* Smaller size for subtitle */
+  font-weight: 400;
+  color: rgb(236, 234, 234);
+  margin-top: 0.25rem;
+  letter-spacing: normal;
+}
+
+/* Ensure the .logo container allows for the h1 to be displayed fully */
+.logo {
+  display: flex; /* Can help with alignment if needed */
+  flex-direction: column; /* Stack title and subtitle */
+  align-items: center; /* Center content horizontally */
+  padding: 1rem 0; /* Add some vertical padding */
+  /* height: auto; Let content define height, remove fixed height if previously set on .logo */
+}
+
+
+/* Image Styling for index page image */
+.index-header-image-container { /* New class for the div holding the image */
+    width: 100%;
+    max-width: 700px; /* ADJUST THIS VALUE to make the image smaller or larger */
+    margin: 1.5rem auto; /* Center the image container and add space */
+    border-radius: var(--border-radius-lg);
+    overflow: hidden; /* To clip image with border-radius */
+    box-shadow: var(--shadow-md);
+}
+
+.index-header-image-container img { /* Styles for the image itself */
+    display: block; /* Remove extra space below image */
+    width: 100%; /* Make image responsive within its container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: var(--border-radius-lg); /* Match container's radius if image isn't already rounded */
+}
+
+/* Styling for abstract text */
+.abstract-text {
+    color: var(--text-light);
+    font-size: 1rem; /* Or 0.9375rem for slightly smaller text */
+    line-height: 1.7;
+    text-align: justify;
+    margin-bottom: 1.5rem; /* Space between paragraphs */
+}
+
+.abstract-text:last-of-type {
+    margin-bottom: 0; /* No bottom margin for the last paragraph */
+}
+
+/* For the {{ data }} message, if it's a status message */
+.status-message {
+    text-align: center;
+    margin: 1rem auto 1.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+}
+.status-message.success { /* Example if you pass a success class */
+    background-color: rgba(var(--success-rgb), 0.1); /* Define --success-rgb in :root */
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+.status-message.error { /* Example for error */
+    background-color: rgba(var(--danger-rgb), 0.1); /* Define --danger-rgb in :root */
+    color: var(--danger);
+    border: 1px solid var(--danger);
+}

@@ -1,0 +1,77 @@
+{% load static %}
+<html>
+
+<head>
+  <title>Auth Privacy Chain - Indirect Access</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link href="{% static 'style_copy.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="main_wrapper">
+    <div class="main_resize">
+      <div class="header">
+        <div class="logo">
+          <h1 class="site-title">
+            <span>A Blockchain-Based Access Control Framework With Privacy Protection in Cloud</span>
+            <small>Empowering Secure Data Exchange</small>
+          </h1>
+        </div>
+      </div>
+      <div class="content">
+        <div class="content_bg">
+          <div class="menu_nav">
+            <ul>
+              <li><a href="{% url 'AccessShareData' %}">Access Share Data</a></li>
+              <li><a href="{% url 'IndirectAccess' %}">Indirect Access Control</a></li>
+              <li><a href="{% url 'Graph' %}">Smart Contract Computation Graph</a></li>
+              <li><a href="{% url 'Logout' %}">Logout</a></li>
+            </ul>
+          </div>
+
+          <form name="f1" class="form_section" method="post" action="{% url 'IndirectAccessAction' %}">
+            {% csrf_token %}
+            <h2>Indirect Access Screen</h2> {% if data %}
+            <div
+              class="status-message {% if message_type == 'success' %}success{% elif message_type == 'error' %}error{% endif %}">
+              {{ message|safe }}
+            </div>
+            {% endif %}
+
+            <div class="form-row" style="--animation-order: 1;">
+              <label for="file-select">Choose File:</label>
+              <div class="input-wrapper">
+                <select name="t1" id="file-select" required>
+                  <option value="">--- Select a File ---</option> {% for file in files %}
+                  <option value="{{ file.value }}">{{ file.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row" style="--animation-order: 2;">
+              <label for="user-select-multiple">Choose Users:</label>
+              <div class="input-wrapper">
+                <select name="t2" id="user-select-multiple" multiple required size="5">
+                  {% for user in users %}
+                  <option value="{{ user.username }}">{{ user.username }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row" style="--animation-order: 3;">
+              <label for="submit-btn"></label>
+              <div class="input-wrapper">
+                <button type="submit" class="submit_button">Grant Indirect Access</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

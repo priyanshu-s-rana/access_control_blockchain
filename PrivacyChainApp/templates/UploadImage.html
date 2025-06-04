@@ -1,0 +1,150 @@
+{% load static %}
+<html>
+
+<head>
+	<title>Auth Privacy Chain</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link href="{% static 'style_copy.css' %}" rel="stylesheet" type="text/css" />
+	<!-- <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" /> -->
+	<script language="javascript">
+		function validate(formObj) {
+			const fileInput = document.getElementById('actual-file');
+			const roleSelect = document.getElementById('roleSelect');
+			const userSelect = document.getElementById('userSelect');
+
+			if (fileInput.files.length === 0) {
+				alert("Please upload medical file");
+				fileInput.focus();
+				return false;
+			}
+			if (roleSelect.value === "") {
+				alert("Please select a role");
+				roleSelect.focus();
+				return false;
+			}
+			if (userSelect.selectedOptions.length === 0) {
+				alert("Please select at least one user");
+				userSelect.focus();
+				return false;
+			}
+			formObj.actionUpdateData.value = "update";
+			return true;
+		}
+
+		// Function to update users list based on selected role
+		function updateUsersList() {
+			const roleSelect = document.getElementById('roleSelect');
+			const userSelect = document.getElementById('userSelect');
+			const selectedRole = roleSelect.value;
+
+			// Clear current options
+			userSelect.innerHTML = '';
+
+			// Get users from the server for the selected role
+			fetch(`/get_users_by_role?role=${selectedRole}`)
+				.then(response => response.json())
+				.then(users => {
+					users.forEach(user => {
+						const option = document.createElement('option');
+						option.value = user.username;
+						option.text = user.username;
+						userSelect.appendChild(option);
+					});
+				})
+				.catch(error => console.error('Error fetching users:', error));
+		}
+
+		// Add this new function for file input handling
+		document.addEventListener('DOMContentLoaded', function () {
+			const actualFileInput = document.getElementById('actual-file');
+			const fileChosen = document.getElementById('file-chosen');
+
+			actualFileInput.addEventListener('change', function () {
+				if (this.files.length > 0) {
+					fileChosen.textContent = this.files[0].name;
+				} else {
+					fileChosen.textContent = 'No file chosen';
+				}
+			});
+		});
+	</script>
+	<script language="javascript" type="text/javascript" src="datetimepicker.js">
+	</script>
+</head>
+
+<body>
+	<div class="main">
+		<div class="main_resize">
+			<div class="header">
+				<div class="logo">
+					<h1 class="site-title">
+						<span>A Blockchain-Based Access Control Framework With Privacy Protection in Cloud</span>
+						<small>Empowering Secure Data Exchange</small>
+					</h1>
+				</div>
+			</div>
+			<div class="content">
+				<div class="content_bg">
+					<div class="menu_nav">
+						<ul>
+
+							<li><a href="{% url 'UploadImage' %}">Upload Data</a></li>
+							<li><a href="{% url 'RevokeUser' %}">Revoke User</a></li>
+							<li><a href="{% url 'Logout' %}">Logout</a></li>
+						</ul>
+					</div>
+					<center>
+						<form name="f1" class="form_section" method="post" action={% url 'UploadImageAction' %}
+							enctype="multipart/form-data" onsubmit="return validate(this);">
+							{% csrf_token %}<br />
+							<h2><b>Patient Medical Image Upload Screen</b></h2>
+							<h2 class="welcome_message">
+								<center>{{ data|safe }}</center>
+							</h2>
+							<table align="center" width="30%">
+								<tr>
+									<td><b>
+											Upload&nbsp;Image</b>
+									</td>
+									<!-- <td><input  type="file" name="t1" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" size="30"></td> -->
+									<td>
+										<input type="file" id="actual-file" name="t1" hidden />
+										<label for="actual-file" class="custom-file-input">Select Medical Image</label>
+										<span id="file-chosen">No file chosen</span>
+									</td>
+								</tr>
+
+								<tr>
+									<td><b>
+											Select&nbsp;Role
+										</b></td>
+									<td><select name="role" id="roleSelect" onchange="updateUsersList()">
+											<option value="">Select Role</option>
+											<option value="Doctor">Doctor</option>
+											<option value="Researcher">Researcher</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><b>Select&nbsp;Users</b></td>
+									<td>
+										<select name="t2" id="userSelect" multiple class="multi-select">
+											<!-- Users will be populated dynamically -->
+										</select>
+										<div class="form-help-text">Hold Ctrl (or ⌘ on Mac) to select multiple users
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<td></td>
+									<td><input class="submit_button" type="submit" value="Upload File to Cloud"></td>
+							</table>
+				</div>
+
+			</div>
+
+
+</body>
+
+</html>

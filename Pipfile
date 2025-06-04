@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+ipfsapi = "*"
+dotenv = "*"
+web3 = "*"
+pycryptodome = "*"
+pyaes = "*"
+pbkdf2 = "*"
+typing = "*"
+matplotlib = "*"
+numpy = "*"
+django = "*"
+django-cache-utils = "*"
+ipfshttpclient = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"

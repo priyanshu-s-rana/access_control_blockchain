@@ -1,0 +1,56 @@
+{% load static %}
+<html>
+<head>
+    <title>Auth Privacy Chain</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link href="{% static 'style_copy.css' %}" rel="stylesheet" type="text/css" />
+    </head>
+<body>
+    <div class="main_wrapper"> <div class="main_resize">
+            <div class="header">
+                <div class="logo">
+                    <h1 class="site-title">
+                        <span>A Blockchain-Based Access Control Framework With Privacy Protection in Cloud</span>
+                        <small>Empowering Secure Data Exchange</small> </h1>
+                </div>
+            </div>
+            <div class="content">
+                <div class="content_bg">
+                    <div class="menu_nav">
+                        <ul>
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'Login' %}">Data Owner</a></li>
+                            <li><a href="{% url 'Login' %}">Data Users</a></li>
+                            <li><a href="{% url 'Signup' %}">Data User Signup Here</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="index-header-image-container">
+                        <img id="img1" src="{% static 'images/header_images.png' %}" alt="Blockchain and Cloud Security Concept" />
+                    </div>
+
+                    {% if data %}
+                        <div class="status-message">{{ data }}</div>
+                        {% endif %}
+
+                    <div class="article"> <h2 style="text-align: center; margin-bottom: 1.5rem;">Abstract</h2>
+                        <p class="abstract-text">
+                            Cloud is a computing model that provides sharing and supports ubiquitous on-demand
+                            access computing, providing new data processing and services for many industries, significantly reducing
+                            user computing and storage costs, and improving ease of use. With the development of cloud-scale and
+                            intensification, cloud security has become an essential issue in the field of cloud computing. Access control
+                            is one of the critical security technologies for protecting sensitive data stored in the cloud by enterprises and
+                            individuals.
+                        </p>
+                        <p class="abstract-text">
+                            Since the centralized access control mechanism is adopted in the cloud, the sensitive data in the
+                            cloud are easy to be tampered with or leaked by hackers or cloud internal managers. To address this issue,
+                            we propose a blockchain-based access control framework with privacy protection called AuthPrivacyChain.
+                            Firstly, we use the account address of the node in blockchain as the identity, and at the same time, redefine
+                            the access control permission of data for the cloud, which is encrypted and stored in blockchain. After that,
+                            we design processes of access control, authorization, and authorization revocation in AuthPrivacyChain.
+                        </p>
+                    </div>
+
+                </div> </div> </div> </div> </body>
+</html>
